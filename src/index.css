@@ -1,0 +1,42 @@
+@import '@fontsource/roboto/300.css';
+@import '@fontsource/roboto/400.css';
+@import '@fontsource/roboto/500.css';
+@import '@fontsource/roboto/700.css';
+
+/* Mulish-regular */
+@font-face {
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/mulish/Mulish-Regular.woff') format('woff'),
+    url('./fonts/mulish/Mulish-Regular.eot') format('embedded-opentype');
+}
+
+/* Mulish-bold */
+@font-face {
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 700;
+  src: url('./fonts/mulish/Mulish-Bold.woff') format('woff'),
+    url('./fonts/mulish/Mulish-Bold.eot') format('embedded-opentype');
+}
+
+/* ArimaMadurai */
+@font-face {
+  font-family: 'Arima-Madurai';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/arimaMadurai/ArimaMadurai-Regular.woff') format('woff'),
+    url('./fonts/arimaMadurai//ArimaMadurai-Regular.eot') format('embedded-opentype');
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Mulish', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
