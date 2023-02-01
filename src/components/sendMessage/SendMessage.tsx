@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { User } from 'firebase/auth';
 import { arrayUnion, doc, serverTimestamp, Timestamp, updateDoc } from 'firebase/firestore';
 import { useFormik } from 'formik';
@@ -20,6 +20,8 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 const SendMessage = () => {
   const { currentUser } = useAuth();
   const { state } = useContext(ChatContext) as ChatContextType;
+
+  const TextAreaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     e.code === 'Enter' && formik.submitForm();
@@ -99,6 +101,19 @@ const SendMessage = () => {
     },
   });
 
+  useEffect(() => {
+    TextAreaRef.current?.addEventListener('keyup', (e) => {
+      const target = e?.target as HTMLTextAreaElement;
+      const minHeight = 50;
+
+      let scHeight = target.scrollHeight;
+
+      if (scHeight > minHeight) {
+        target.style.height = `${scHeight}px`;
+      }
+    });
+  }, []);
+
   return (
     <ChatFormContainerStyled>
       <ChatFormStyled onSubmit={formik.handleSubmit}>
@@ -108,6 +123,7 @@ const SendMessage = () => {
           name='message'
           placeholder='Type something'
           onKeyDown={handleKeyDown}
+          ref={TextAreaRef}
         />
         <InputFileStyled
           type='file'

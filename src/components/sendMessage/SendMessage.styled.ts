@@ -2,7 +2,7 @@ import { styled } from '@mui/material';
 
 export const ChatFormContainerStyled = styled('div')`
   padding: 24px 100px;
-  background: rgba(0, 0, 0, 0.31);
+  /* background: rgba(0, 0, 0, 0.31); */
 `;
 
 export const ChatFormStyled = styled('form')`
@@ -10,6 +10,7 @@ export const ChatFormStyled = styled('form')`
   width: 100%;
   height: 50px;
   gap: 10px;
+  align-items: flex-end;
 
   label {
     width: 50px;
@@ -25,6 +26,7 @@ export const ChatFormStyled = styled('form')`
 
 export const ButtonStyled = styled('button')`
   padding: 10px 15px;
+  height: 50px;
   background: grey;
   font-size: 18px;
   border: none;
@@ -46,11 +48,20 @@ export const TextareaMessageStyled = styled('textarea')`
   border-radius: 5px 5px 0 5px;
   color: black;
   width: 500px;
+  height: 50px;
   cursor: inherit;
   resize: none;
 
   &::placeholder {
     color: #b48461;
+  }
+
+  &:is(:focus) {
+    border: 1px solid black;
+  }
+
+  &::-webkit-scrollbar {
+    width: 0px;
   }
 `;
 

@@ -6,8 +6,9 @@ import { DBMessageModel } from '../../../types/models';
 import { db } from '../../../utils/init-firebase';
 import SendMessage from '../../sendMessage/SendMessage';
 import Message from './message/Message';
-import { MessagesBlockstyled, ModalStyled, SectionStyled } from './Messages.styled';
+import { MessagesBlockstyled, SectionStyled } from './Messages.styled';
 import dayOfYear from 'dayjs/plugin/dayOfYear';
+import CustomModal from '../../../UI/modal/CustomModal';
 
 dayjs.extend(dayOfYear);
 
@@ -74,8 +75,12 @@ const Messages = () => {
         </MessagesBlockstyled>
 
         <span ref={scroll}></span>
+        <SendMessage />
       </SectionStyled>
-      <SendMessage />
+      <CustomModal active={!!img} handleClose={() => setImg('')}>
+        <img src={img} alt='' />
+      </CustomModal>
+      {/* <SendMessage /> */}
     </>
   );
 };

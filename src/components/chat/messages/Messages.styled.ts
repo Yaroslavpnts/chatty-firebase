@@ -1,5 +1,4 @@
 import { styled } from '@mui/material';
-import Modal from '@mui/material/Modal';
 
 export const SectionStyled = styled('section')`
   display: flex;
@@ -24,14 +23,6 @@ export const SectionStyled = styled('section')`
   &::-webkit-scrollbar-track {
     background-color: rgba(0, 0, 0, 0.33);
   }
-`;
-
-export const ModalStyled = styled(Modal)`
-  /* left: 50%;
-  top: 50%;
-  right: unset;
-  bottom: unset;
-  transform: translate(-50%, -50%); */
 `;
 
 export const MessagesBlockstyled = styled('div')`
