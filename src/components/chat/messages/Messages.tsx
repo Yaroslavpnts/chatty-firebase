@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { ChatContext, ChatContextType } from '../../../contexts/ChatContext';
 import { DBMessageModel } from '../../../types/models';
 import { db } from '../../../utils/init-firebase';
-import SendMessage from '../../sendMessage/SendMessage';
+import SendMessage from './sendMessage/SendMessage';
 import Message from './message/Message';
 import { MessagesBlockstyled, SectionStyled } from './Messages.styled';
 import dayOfYear from 'dayjs/plugin/dayOfYear';
@@ -74,13 +74,17 @@ const Messages = () => {
           {state.chatId && messages && messages.map(messageMapFn)}
         </MessagesBlockstyled>
 
-        <span ref={scroll}></span>
-        <SendMessage />
+        <SendMessage scroll={scroll} />
+        <span
+          ref={scroll}
+          style={{
+            minHeight: '35px',
+          }}
+        ></span>
       </SectionStyled>
       <CustomModal active={!!img} handleClose={() => setImg('')}>
         <img src={img} alt='' />
       </CustomModal>
-      {/* <SendMessage /> */}
     </>
   );
 };

@@ -26,6 +26,10 @@ export const MessageStyled = styled('div')<MessageProps>`
       padding: 10px 20px;
       max-width: max-content;
       word-wrap: break-word;
+
+      @media screen and (max-width: 768px) {
+        padding: 3px 10px;
+      }
     }
   }
 `;

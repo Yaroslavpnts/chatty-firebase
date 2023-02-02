@@ -2,10 +2,12 @@ import { styled } from '@mui/material';
 
 export const SectionStyled = styled('section')`
   display: flex;
-  padding: 10px 100px;
+  padding: 10px 100px 15px;
+  /* padding: 10px 100px 75px; */
   position: relative;
   overflow-y: scroll;
   flex-direction: column;
+  /* justify-content: flex-end; */
   height: 60vh;
   flex-grow: 1;
   /* gap: 15px; */
@@ -23,10 +25,20 @@ export const SectionStyled = styled('section')`
   &::-webkit-scrollbar-track {
     background-color: rgba(0, 0, 0, 0.33);
   }
+
+  @media screen and (max-width: 1200px) {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
 `;
 
 export const MessagesBlockstyled = styled('div')`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  flex: 1 1 auto;
+
+  /* > div:last-of-type {
+    margin-bottom: 25px;
+  } */
 `;

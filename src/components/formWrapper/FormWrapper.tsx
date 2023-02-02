@@ -6,7 +6,5 @@ interface WrapperProps {
 }
 
 export const Wrapper: React.FC<WrapperProps> = ({ children }) => (
-  <BoxStyled component='div' maxWidth='386px'>
-    {children}
-  </BoxStyled>
+  <BoxStyled component='div'>{children}</BoxStyled>
 );

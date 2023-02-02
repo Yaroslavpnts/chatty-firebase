@@ -1,5 +1,5 @@
 import React from 'react';
-import { SumbitButtonStyled } from './SubmitButtos.styled';
+import { SumbitButtonStyled } from './SubmitButton.styled';
 
 interface SumbitButtonStyledProps {
   children: React.ReactNode;

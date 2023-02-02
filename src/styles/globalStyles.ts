@@ -1,7 +1,7 @@
 import { Box, styled } from '@mui/material';
 
 export const FormStyled = styled('form')`
-  width: 386px;
+  width: 100%;
   margin-bottom: 30px;
 `;
 

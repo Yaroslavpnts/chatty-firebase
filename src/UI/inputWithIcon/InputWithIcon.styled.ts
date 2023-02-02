@@ -42,6 +42,12 @@ export const InputStyledContainer = styled('div')`
       letter-spacing: 0.05em;
       color: rgba(0, 0, 0, 0.38);
     }
+
+    @media screen and (max-width: 1000px) {
+      padding: 5px 50px 5px 10px;
+      font-size: 16px;
+      line-height: 18px;
+    }
   }
 
   img {

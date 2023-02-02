@@ -24,7 +24,19 @@ export const TopCircle = styled('span')`
   box-shadow: 6px 4px 42px #886a54;
   border-radius: 50%;
   border: 1px solid #6d492f;
+
+  @media screen and (max-width: 1024px) {
+    width: 250px;
+    height: 250px;
+    left: -122px;
+    top: -102px;
+  }
+
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
 `;
+
 export const BotCircle = styled('span')`
   position: absolute;
   width: 600px;
@@ -35,4 +47,15 @@ export const BotCircle = styled('span')`
   filter: drop-shadow(-36px -5px 42px #6f4b30);
   border-radius: 50%;
   border: 1px solid #6f4b30;
+
+  @media screen and (max-width: 1024px) {
+    width: 250px;
+    height: 250px;
+    right: -132px;
+    bottom: -116px;
+  }
+
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
 `;

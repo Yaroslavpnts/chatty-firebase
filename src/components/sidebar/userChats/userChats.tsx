@@ -59,7 +59,7 @@ const Chats = () => {
               onClick={() => handleSelect(chat[1].userInfo)}
               selected={chat[1].userInfo.uid === state.user?.uid}
             >
-              <img src={chat[1].userInfo.photoUrl} alt='user-avatar' />
+              <img src={chat[1].userInfo.photoUrl} alt='user-avatar' referrerPolicy='no-referrer' />
               <div>
                 <p>{chat[1].userInfo.displayName}</p>
                 {chat[1].lastMessage?.text ? (

@@ -9,6 +9,11 @@ export const LinkStyled = styled(Link)`
   text-decoration-line: underline;
   margin-top: 10px;
   color: #faefe7;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 16px;
+    line-height: 18px;
+  }
 `;
 
 export const SignUpButton = styled('button')`
@@ -18,7 +23,7 @@ export const SignUpButton = styled('button')`
   font-size: 21px;
   line-height: 21px;
   letter-spacing: 0.05em;
-  height: 40px;
+  /* height: 40px; */
 
   color: #ffffff;
 
@@ -39,5 +44,15 @@ export const SignUpButton = styled('button')`
 
   &:active {
     box-shadow: inset -10px -9px 15px #886a54;
+  }
+
+  @media screen and (max-width: 1000px) {
+    padding: 5px;
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 140px;
   }
 `;

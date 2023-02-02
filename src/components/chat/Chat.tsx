@@ -15,7 +15,7 @@ const Chat: React.FC = () => {
       {state.user?.uid && (
         <>
           <ChatInfo>
-            <img src={state.user.photoUrl} alt='' />
+            <img src={state.user.photoUrl} alt='' referrerPolicy='no-referrer' />
             <span>{state.user?.displayName}</span>
           </ChatInfo>
           <Messages />

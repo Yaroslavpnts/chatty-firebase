@@ -33,4 +33,9 @@ export const SignInBtnStyled = styled('button')`
   letter-spacing: 0.05em;
 
   color: #5f391d;
+
+  @media screen and (max-width: 768px) {
+    font-size: 16px;
+    line-height: 18px;
+  }
 `;

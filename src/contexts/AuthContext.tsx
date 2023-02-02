@@ -10,6 +10,9 @@ import {
   signInWithPopup,
   sendPasswordResetEmail,
   confirmPasswordReset,
+  setPersistence,
+  browserLocalPersistence,
+  browserSessionPersistence,
 } from 'firebase/auth';
 
 const register = (email: string, password: string) => {
@@ -56,7 +59,9 @@ const AuthContextProvider: React.FC<AuthContextProps> = ({ children }) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, user => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      await setPersistence(auth, browserSessionPersistence);
+
       setCurrentUser(user);
     });
 

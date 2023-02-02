@@ -8,7 +8,6 @@ export const SumbitButtonStyled = styled(LoadingButton)`
   border-radius: 47px;
   padding: 10px;
   width: 240px;
-  /* height: 40px; */
   text-transform: none;
 
   font-family: 'Arima-Madurai';
@@ -42,5 +41,15 @@ export const SumbitButtonStyled = styled(LoadingButton)`
     .MuiCircularProgress-svg {
       color: white;
     }
+  }
+
+  @media screen and (max-width: 1000px) {
+    padding: 5px;
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 140px;
   }
 `;

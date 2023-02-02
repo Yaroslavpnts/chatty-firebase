@@ -30,8 +30,8 @@ export const ModalContentStyled = styled('div')<ModalProps>`
   padding: 20px;
   border-radius: 12px;
   background-color: white;
-  transform: ${(props) => (props.active ? 'scale(1)' : 'scale(0.5)')};
-  transform: 0.4s;
+  transform: ${(props) => (props.active ? 'scale(1)' : 'scale(1)')};
+  transform: 0.3s;
   max-height: 600px;
 
   img {

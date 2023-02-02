@@ -2,11 +2,11 @@ import React, { useContext, useEffect, useRef } from 'react';
 import { User } from 'firebase/auth';
 import { arrayUnion, doc, serverTimestamp, Timestamp, updateDoc } from 'firebase/firestore';
 import { useFormik } from 'formik';
-import { ChatContext, ChatContextType } from '../../contexts/ChatContext';
-import { useAuth } from '../../hooks/useAuth';
-import { db, storage } from '../../utils/init-firebase';
+import { ChatContext, ChatContextType } from '../../../../contexts/ChatContext';
+import { useAuth } from '../../../../hooks/useAuth';
+import { db, storage } from '../../../../utils/init-firebase';
 import { v4 as uuid } from 'uuid';
-import SendImg from '../../assets/svg/send-image.svg';
+import SendImg from '../../../../assets/svg/send-image.svg';
 
 import {
   ButtonStyled,
@@ -17,7 +17,11 @@ import {
 } from './SendMessage.styled';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
-const SendMessage = () => {
+interface SendMessageProps {
+  scroll: React.RefObject<HTMLSpanElement>;
+}
+
+const SendMessage: React.FC<SendMessageProps> = ({ scroll }) => {
   const { currentUser } = useAuth();
   const { state } = useContext(ChatContext) as ChatContextType;
 
@@ -102,39 +106,56 @@ const SendMessage = () => {
   });
 
   useEffect(() => {
-    TextAreaRef.current?.addEventListener('keyup', (e) => {
+    if (TextAreaRef.current) {
+      TextAreaRef.current.value = '';
+    }
+
+    const handleKeyUp = (e: KeyboardEvent) => {
       const target = e?.target as HTMLTextAreaElement;
       const minHeight = 50;
 
       let scHeight = target.scrollHeight;
 
+      console.log(scHeight);
+
       if (scHeight > minHeight) {
         target.style.height = `${scHeight}px`;
       }
-    });
-  }, []);
+
+      scroll.current?.scrollIntoView(false);
+    };
+
+    TextAreaRef.current?.addEventListener('keyup', handleKeyUp);
+
+    return () => {
+      TextAreaRef.current?.removeEventListener('keyup', handleKeyUp);
+    };
+  }, [state.chatId]);
 
   return (
     <ChatFormContainerStyled>
       <ChatFormStyled onSubmit={formik.handleSubmit}>
-        <TextareaMessageStyled
-          value={formik.values.message}
-          onChange={formik.handleChange}
-          name='message'
-          placeholder='Type something'
-          onKeyDown={handleKeyDown}
-          ref={TextAreaRef}
-        />
-        <InputFileStyled
-          type='file'
-          id='file'
-          onChange={(event) => {
-            formik.setFieldValue('file', event.currentTarget.files?.[0]);
-          }}
-        />
-        <label htmlFor='file'>
-          <img src={SendImg} alt='' />
-        </label>
+        <div>
+          <TextareaMessageStyled
+            value={formik.values.message}
+            onChange={formik.handleChange}
+            name='message'
+            placeholder='Type something'
+            onKeyDown={handleKeyDown}
+            ref={TextAreaRef}
+          />
+          <InputFileStyled
+            type='file'
+            id='file'
+            onChange={(event) => {
+              formik.setFieldValue('file', event.currentTarget.files?.[0]);
+            }}
+          />
+          <label htmlFor='file'>
+            <img src={SendImg} alt='' />
+          </label>
+        </div>
+
         <ButtonStyled type='submit'>Send</ButtonStyled>
       </ChatFormStyled>
     </ChatFormContainerStyled>

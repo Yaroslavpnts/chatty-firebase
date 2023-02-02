@@ -22,7 +22,9 @@ const Message: React.FC<MessageProps> = ({ message, scroll, handleClick, newDate
 
   useEffect(() => {
     // scroll.current?.scrollIntoView({ behavior: 'smooth' });
+    // scroll.current?.scrollIntoView();
     scroll.current?.scrollIntoView(true);
+    // scroll.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, [message]);
 
   return (
@@ -40,6 +42,7 @@ const Message: React.FC<MessageProps> = ({ message, scroll, handleClick, newDate
                 : state.user!.photoUrl
             }
             alt=''
+            referrerPolicy='no-referrer'
           />
           <span>{dayjs(message.date.toDate()).format('HH:mm')}</span>
         </MessageInfoStyled>
