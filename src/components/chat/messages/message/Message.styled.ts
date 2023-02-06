@@ -19,6 +19,10 @@ export const MessageStyled = styled('div')<MessageProps>`
       cursor: pointer;
     }
 
+    @media screen and (max-width: 1250px) {
+      max-width: calc(50% + 60px);
+    }
+
     p {
       background-color: ${(props) => (props.owner ? '#F3EBE5' : '#230F00;')};
       color: ${(props) => (props.owner ? '#5C3315' : '#FFF')};

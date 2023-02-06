@@ -35,8 +35,13 @@ export const ModalContentStyled = styled('div')<ModalProps>`
   max-height: 600px;
 
   img {
-    max-width: 800px;
-    max-height: 560px;
+    max-width: 700px;
+    max-height: 480px;
     object-fit: cover;
+
+    @media screen and (max-width: 700px) {
+      max-width: 500px;
+      max-height: 280px;
+    }
   }
 `;

@@ -13,19 +13,15 @@ export const ChatFormContainerStyled = styled('div')`
   @media screen and (max-width: 1150px) {
     padding: 24px 0px 0px;
   }
-
-  /* position: fixed;
-  bottom: 15px; */
 `;
 
 export const ChatFormStyled = styled('form')`
   display: flex;
   width: 100%;
-  /* height: 50px; */
   gap: 10px;
   align-items: flex-end;
 
-  > div {
+  > div:first-of-type {
     position: relative;
     display: flex;
     width: 100%;
@@ -36,14 +32,6 @@ export const ChatFormStyled = styled('form')`
     top: 50%;
     right: 5px;
     transform: translateY(-50%);
-
-    /* width: 50px;
-    height: 50px;
-    background-color: azure;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center; */
     cursor: pointer;
   }
 `;
@@ -71,7 +59,6 @@ export const TextareaMessageStyled = styled('textarea')`
   background-color: azure;
   border-radius: 5px 5px 5px 5px;
   color: black;
-  /* width: 500px; */
   width: 100%;
   height: 50px;
   cursor: inherit;
@@ -96,4 +83,30 @@ export const TextareaMessageStyled = styled('textarea')`
 
 export const InputFileStyled = styled('input')`
   display: none;
+`;
+
+export const SendImageModalStyled = styled('div')`
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  > div {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+
+    input {
+      border: none;
+      outline: none;
+    }
+
+    button {
+      background: rgb(136, 106, 84);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  }
 `;

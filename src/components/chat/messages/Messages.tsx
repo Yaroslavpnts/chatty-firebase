@@ -82,6 +82,7 @@ const Messages = () => {
           }}
         />
       </SectionStyled>
+
       <CustomModal active={!!img} handleClose={() => setImg('')}>
         <img src={img} alt='' />
       </CustomModal>

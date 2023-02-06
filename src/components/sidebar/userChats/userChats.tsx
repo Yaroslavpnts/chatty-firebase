@@ -35,8 +35,8 @@ const Chats = () => {
     }
   }, [currentUser!.uid]);
 
-  console.log(chats);
-  console.log(Object.entries(chats));
+  // console.log(chats);
+  // console.log(Object.entries(chats));
 
   return (
     <UserChatsContainer>

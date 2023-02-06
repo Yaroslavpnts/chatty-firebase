@@ -2,8 +2,9 @@ import { styled } from '@mui/material';
 
 export const SectionStyled = styled('section')`
   display: flex;
-  padding: 10px 100px 15px;
-  padding: 10px 100px 45px;
+  /* padding: 10px 100px 15px; */
+  padding: 10px 100px 0px;
+  padding: 10px 100px 0px;
   position: relative;
   overflow-y: scroll;
   flex-direction: column;

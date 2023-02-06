@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { User } from 'firebase/auth';
 import { arrayUnion, doc, serverTimestamp, Timestamp, updateDoc } from 'firebase/firestore';
 import { useFormik } from 'formik';
@@ -12,10 +12,12 @@ import {
   ChatFormContainerStyled,
   ChatFormStyled,
   InputFileStyled,
+  SendImageModalStyled,
   TextareaMessageStyled,
 } from './SendMessage.styled';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { useChatContext } from '../../../../hooks/useChat';
+import CustomModal from '../../../../UI/modal/CustomModal';
 
 interface SendMessageProps {
   scrollRef: React.RefObject<HTMLSpanElement>;
@@ -24,8 +26,26 @@ interface SendMessageProps {
 const SendMessage: React.FC<SendMessageProps> = ({ scrollRef }) => {
   const { currentUser } = useAuth();
   const { state } = useChatContext();
+  const [img, setImg] = useState<string>('');
 
   const TextAreaRef = useRef<HTMLTextAreaElement>(null);
+  const InputFileRef = useRef<HTMLInputElement>(null);
+
+  const handleChangeFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.currentTarget.files?.[0] as File;
+
+    console.log('file changed');
+
+    formik.setFieldValue('file', event.currentTarget.files?.[0]);
+
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    reader.onload = function () {
+      setImg(reader.result as string);
+    };
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     e.code === 'Enter' && formik.submitForm();
@@ -105,6 +125,12 @@ const SendMessage: React.FC<SendMessageProps> = ({ scrollRef }) => {
     },
   });
 
+  const handleLabelClick = () => {
+    if (InputFileRef.current) {
+      InputFileRef.current.value = '';
+    }
+  };
+
   useEffect(() => {
     formik.setFieldValue('message', '');
     formik.setFieldValue('file', '');
@@ -141,19 +167,33 @@ const SendMessage: React.FC<SendMessageProps> = ({ scrollRef }) => {
             onKeyDown={handleKeyDown}
             ref={TextAreaRef}
           />
-          <InputFileStyled
-            type='file'
-            id='file'
-            onChange={(event) => {
-              formik.setFieldValue('file', event.currentTarget.files?.[0]);
-            }}
-          />
-          <label htmlFor='file'>
+          <InputFileStyled type='file' id='file' onChange={handleChangeFile} ref={InputFileRef} />
+          <label htmlFor='file' onClick={handleLabelClick}>
             <img src={SendImg} alt='' />
           </label>
         </div>
 
         <ButtonStyled type='submit'>Send</ButtonStyled>
+
+        <CustomModal
+          active={!!formik.values.file}
+          handleClose={() => formik.setFieldValue('file', '')}
+        >
+          <SendImageModalStyled>
+            <img src={img} alt='' />
+            <div>
+              <input
+                value={formik.values.message}
+                onChange={formik.handleChange}
+                name='message'
+                placeholder='Add a caption'
+                onKeyDown={handleKeyDown}
+                onClick={(e) => e}
+              />
+              <button type='submit'>Send</button>
+            </div>
+          </SendImageModalStyled>
+        </CustomModal>
       </ChatFormStyled>
     </ChatFormContainerStyled>
   );

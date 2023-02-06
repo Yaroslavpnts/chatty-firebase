@@ -46,8 +46,8 @@ const Message: React.FC<MessageProps> = ({ message, scrollRef, handleClick, newD
         </MessageInfoStyled>
 
         <div>
-          {message.text && <p>{message.text}</p>}
           {message.image && <img src={message.image} alt='' onClick={handleClickImg} />}
+          {message.text && <p>{message.text}</p>}
         </div>
       </MessageStyled>
     </>
