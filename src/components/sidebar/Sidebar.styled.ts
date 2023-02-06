@@ -1,11 +1,23 @@
 import { styled } from '@mui/material';
 
-export const SectionStyled = styled('section')`
+interface SidebarSectionProps {
+  isShowChat: boolean;
+}
+
+export const SidebarSectionStyled = styled('section')<SidebarSectionProps>`
   height: 100%;
   width: 420px;
-  /* border-right: 1px solid black; */
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+
+  @media screen and (max-width: 800px) {
+    display: ${(props) => (props.isShowChat ? 'none' : 'block')};
+  }
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+  }
 `;
 
 export const UserChatBlock = styled('div')`

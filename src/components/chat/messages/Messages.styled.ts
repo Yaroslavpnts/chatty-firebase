@@ -3,21 +3,22 @@ import { styled } from '@mui/material';
 export const SectionStyled = styled('section')`
   display: flex;
   padding: 10px 100px 15px;
-  /* padding: 10px 100px 75px; */
+  padding: 10px 100px 45px;
   position: relative;
   overflow-y: scroll;
   flex-direction: column;
   /* justify-content: flex-end; */
-  height: 60vh;
+  height: 70%;
+  /* height: 400px; */
   flex-grow: 1;
   /* gap: 15px; */
 
   &::-webkit-scrollbar {
-    width: 8px;
+    width: 3px;
   }
 
   &::-webkit-scrollbar-thumb {
-    width: 8px !important;
+    /* width: 8px !important; */
     background-color: #d9d9d9;
     border-radius: 8px;
   }
@@ -37,6 +38,7 @@ export const MessagesBlockstyled = styled('div')`
   flex-direction: column;
   gap: 10px;
   flex: 1 1 auto;
+  /* overflow-y: scroll; */
 
   /* > div:last-of-type {
     margin-bottom: 25px;

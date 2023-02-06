@@ -3,6 +3,7 @@ import { useAuth } from '../hooks/useAuth';
 
 export enum ChatContextTypes {
   CHANGE_USER = 'CHANGE_USER',
+  TOGGLE_CHAT = 'TOGGLE_CHAT',
 }
 
 export interface UserType {
@@ -12,11 +13,13 @@ export interface UserType {
 }
 
 export interface ChatState {
+  showChat: boolean;
   chatId: string | null;
   user: UserType | null;
 }
 
 const INITIAL_STATE = {
+  showChat: false,
   chatId: null,
   user: {
     displayName: '',
@@ -25,12 +28,18 @@ const INITIAL_STATE = {
   },
 };
 
-export const changeUser = (user: UserType | null) => ({
-  type: ChatContextTypes.CHANGE_USER,
-  payload: user,
-});
+export const changeUser = (user: UserType | null) =>
+  ({
+    type: ChatContextTypes.CHANGE_USER,
+    payload: user,
+  } as const);
 
-type ActionsTypes = ReturnType<typeof changeUser>;
+export const toggleShowChat = () =>
+  ({
+    type: ChatContextTypes.TOGGLE_CHAT,
+  } as const);
+
+type ActionsTypes = ReturnType<typeof changeUser> | ReturnType<typeof toggleShowChat>;
 
 export interface ChatContextType {
   state: ChatState;
@@ -61,10 +70,19 @@ const ChatContextProvider: React.FC<ChatContextProps> = ({ children }) => {
         }
 
         return {
+          ...state,
           user: action.payload,
           chatId,
         };
       }
+
+      case ChatContextTypes.TOGGLE_CHAT: {
+        return {
+          ...state,
+          showChat: !state.showChat,
+        };
+      }
+
       default:
         return state;
     }

@@ -1,30 +1,28 @@
 import dayjs from 'dayjs';
-import React, { useContext, useRef, useEffect } from 'react';
-import { ChatContext, ChatContextType } from '../../../../contexts/ChatContext';
+import React, { useEffect } from 'react';
 import { useAuth } from '../../../../hooks/useAuth';
+import { useChatContext } from '../../../../hooks/useChat';
 import { DBMessageModel } from '../../../../types/models';
 import { MessageInfoStyled, MessageStyled, NewDateStyled } from './Message.styled';
 
 interface MessageProps {
   message: DBMessageModel;
-  scroll: React.RefObject<HTMLSpanElement>;
+  scrollRef: React.RefObject<HTMLSpanElement>;
   handleClick: (img: string) => void;
   newDate?: boolean;
 }
 
-const Message: React.FC<MessageProps> = ({ message, scroll, handleClick, newDate }) => {
+const Message: React.FC<MessageProps> = ({ message, scrollRef, handleClick, newDate }) => {
   const { currentUser } = useAuth();
-  const { state } = useContext(ChatContext) as ChatContextType;
+  const { state } = useChatContext();
 
   const handleClickImg = () => {
     handleClick(message.image ? message.image : '');
   };
 
   useEffect(() => {
-    // scroll.current?.scrollIntoView({ behavior: 'smooth' });
-    // scroll.current?.scrollIntoView();
-    scroll.current?.scrollIntoView(true);
-    // scroll.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
+    scrollRef.current?.scrollIntoView(false);
   }, [message]);
 
   return (

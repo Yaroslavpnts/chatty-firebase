@@ -8,7 +8,7 @@ export const NavbarStyled = styled('div')`
   justify-content: space-between;
 
   > img {
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 300px) {
       display: none;
     }
   }
@@ -21,11 +21,6 @@ export const UserSectionStyled = styled('div')`
 
   > span:last-of-type {
     cursor: pointer;
-
-    @media screen and (max-width: 768px) {
-      position: absolute;
-      bottom: 10px;
-    }
   }
 `;
 

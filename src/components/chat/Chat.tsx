@@ -1,21 +1,30 @@
-import { collection, onSnapshot, orderBy, query, where } from 'firebase/firestore';
-import React, { useState, useEffect, useRef, useContext } from 'react';
-import { MessagesContainer, ChatInfo } from './Chat.styled';
+import React from 'react';
+import { MessagesContainer, ChatInfo, UserImg } from './Chat.styled';
 import Messages from './messages/Messages';
-import { ChatContext, ChatContextType } from '../../contexts/ChatContext';
 import BubbleBg from '../../assets/png/bubble-bg.png';
+import ArrowLeftSvg from '../../assets/svg/arrowLeft.svg';
+import { useChatContext } from '../../hooks/useChat';
+import { changeUser } from '../../contexts/ChatContext';
 
 const Chat: React.FC = () => {
-  const { state } = useContext(ChatContext) as ChatContextType;
+  const { state, dispatch } = useChatContext();
 
-  const props = Object.assign({}, { bgimage: BubbleBg });
+  const hideChat = () => {
+    dispatch(changeUser(null));
+  };
+
+  const props = Object.assign({}, { bgimage: BubbleBg, isshowchat: !!state.chatId });
 
   return (
     <MessagesContainer {...props}>
       {state.user?.uid && (
         <>
           <ChatInfo>
-            <img src={state.user.photoUrl} alt='' referrerPolicy='no-referrer' />
+            <button onClick={() => hideChat()}>
+              <img src={ArrowLeftSvg} alt='' />
+            </button>
+
+            <UserImg src={state.user.photoUrl} alt='' referrerPolicy='no-referrer' />
             <span>{state.user?.displayName}</span>
           </ChatInfo>
           <Messages />

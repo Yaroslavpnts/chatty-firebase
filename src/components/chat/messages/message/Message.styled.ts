@@ -27,7 +27,7 @@ export const MessageStyled = styled('div')<MessageProps>`
       max-width: max-content;
       word-wrap: break-word;
 
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: 1064px) {
         padding: 3px 10px;
       }
     }
@@ -52,6 +52,6 @@ export const NewDateStyled = styled('div')`
   align-self: center;
   color: #fff;
   padding: 4.5px 10px;
-  background: rgba(243, 235, 229, 0.5);
+  background: rgba(243, 235, 229, 0.2);
   border-radius: 10px;
 `;

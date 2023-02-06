@@ -1,29 +1,19 @@
 import { doc, onSnapshot } from 'firebase/firestore';
-import React, { useContext, useEffect, useState } from 'react';
-import { changeUser, ChatContext, ChatContextType, UserType } from '../../../contexts/ChatContext';
+import React, { useEffect, useState } from 'react';
+import { changeUser, UserType } from '../../../contexts/ChatContext';
 import { useAuth } from '../../../hooks/useAuth';
 import { UserChatStyled } from '../../../styles/globalStyles';
 import { DBUserChatsModel } from '../../../types/models';
 import { db } from '../../../utils/init-firebase';
 import LastMsgImage from '../../../assets/svg/image.svg';
 import { LastMessageContainer, LastMessageImg, UserChatsContainer } from './userChats.styled';
-
-type UserChatType = {
-  date: { seconds: number; nanoseconds: number };
-  lastMessage?: { text: string };
-  userInfo: { uid: string; photoUrl: string };
-  lastImg: { url: string };
-};
-
-const getLastMessage = (userChat: UserChatType) => {
-  let lastMessage: string;
-};
+import { useChatContext } from '../../../hooks/useChat';
 
 const Chats = () => {
   const [chats, setChats] = useState<DBUserChatsModel>({});
   const { currentUser } = useAuth();
 
-  const { dispatch, state } = useContext(ChatContext) as ChatContextType;
+  const { state, dispatch } = useChatContext();
 
   const handleSelect = (user: UserType) => {
     dispatch(changeUser(user));

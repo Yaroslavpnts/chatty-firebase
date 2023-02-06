@@ -1,14 +1,15 @@
-import React, { useContext } from 'react';
-import { changeUser, ChatContext, ChatContextType } from '../../../contexts/ChatContext';
+import React from 'react';
+import { changeUser } from '../../../contexts/ChatContext';
 import { useAuth } from '../../../hooks/useAuth';
 import { NavbarStyled, ProfileImg, UserSectionStyled } from './Navbar.styled';
 import LogoNavbar from '../../../assets/svg/logo-sm.svg';
 import Logout from '../../../assets/svg/logout.svg';
+import { useChatContext } from '../../../hooks/useChat';
 
 const Navbar = () => {
   const { logout, currentUser } = useAuth();
 
-  const { dispatch } = useContext(ChatContext) as ChatContextType;
+  const { dispatch } = useChatContext();
 
   const handleLogout = async () => {
     await logout();

@@ -1,7 +1,6 @@
 import dayjs from 'dayjs';
 import { doc, onSnapshot } from 'firebase/firestore';
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import { ChatContext, ChatContextType } from '../../../contexts/ChatContext';
+import React, { useEffect, useRef, useState } from 'react';
 import { DBMessageModel } from '../../../types/models';
 import { db } from '../../../utils/init-firebase';
 import SendMessage from './sendMessage/SendMessage';
@@ -9,17 +8,18 @@ import Message from './message/Message';
 import { MessagesBlockstyled, SectionStyled } from './Messages.styled';
 import dayOfYear from 'dayjs/plugin/dayOfYear';
 import CustomModal from '../../../UI/modal/CustomModal';
+import { useChatContext } from '../../../hooks/useChat';
 
 dayjs.extend(dayOfYear);
 
 const Messages = () => {
   const [messages, setMessages] = useState<DBMessageModel[]>([]);
   const [img, setImg] = useState('');
-  const scroll = useRef<HTMLSpanElement>(null);
+  const scrollRef = useRef<HTMLSpanElement>(null);
 
   const dayYearRef = useRef(0);
 
-  const { state } = useContext(ChatContext) as ChatContextType;
+  const { state } = useChatContext();
 
   const handleClickImg = (img: string) => {
     setImg(img);
@@ -38,7 +38,7 @@ const Messages = () => {
       <Message
         key={message.id}
         message={message}
-        scroll={scroll}
+        scrollRef={scrollRef}
         handleClick={handleClickImg}
         newDate={newDay}
       />
@@ -74,13 +74,13 @@ const Messages = () => {
           {state.chatId && messages && messages.map(messageMapFn)}
         </MessagesBlockstyled>
 
-        <SendMessage scroll={scroll} />
+        <SendMessage scrollRef={scrollRef} />
         <span
-          ref={scroll}
+          ref={scrollRef}
           style={{
-            minHeight: '35px',
+            minHeight: '15px',
           }}
-        ></span>
+        />
       </SectionStyled>
       <CustomModal active={!!img} handleClose={() => setImg('')}>
         <img src={img} alt='' />

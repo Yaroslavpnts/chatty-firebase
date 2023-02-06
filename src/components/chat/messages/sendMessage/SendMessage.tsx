@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { User } from 'firebase/auth';
 import { arrayUnion, doc, serverTimestamp, Timestamp, updateDoc } from 'firebase/firestore';
 import { useFormik } from 'formik';
-import { ChatContext, ChatContextType } from '../../../../contexts/ChatContext';
 import { useAuth } from '../../../../hooks/useAuth';
 import { db, storage } from '../../../../utils/init-firebase';
 import { v4 as uuid } from 'uuid';
@@ -16,14 +15,15 @@ import {
   TextareaMessageStyled,
 } from './SendMessage.styled';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { useChatContext } from '../../../../hooks/useChat';
 
 interface SendMessageProps {
-  scroll: React.RefObject<HTMLSpanElement>;
+  scrollRef: React.RefObject<HTMLSpanElement>;
 }
 
-const SendMessage: React.FC<SendMessageProps> = ({ scroll }) => {
+const SendMessage: React.FC<SendMessageProps> = ({ scrollRef }) => {
   const { currentUser } = useAuth();
-  const { state } = useContext(ChatContext) as ChatContextType;
+  const { state } = useChatContext();
 
   const TextAreaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -106,9 +106,8 @@ const SendMessage: React.FC<SendMessageProps> = ({ scroll }) => {
   });
 
   useEffect(() => {
-    if (TextAreaRef.current) {
-      TextAreaRef.current.value = '';
-    }
+    formik.setFieldValue('message', '');
+    formik.setFieldValue('file', '');
 
     const handleKeyUp = (e: KeyboardEvent) => {
       const target = e?.target as HTMLTextAreaElement;
@@ -116,13 +115,11 @@ const SendMessage: React.FC<SendMessageProps> = ({ scroll }) => {
 
       let scHeight = target.scrollHeight;
 
-      console.log(scHeight);
-
       if (scHeight > minHeight) {
         target.style.height = `${scHeight}px`;
       }
 
-      scroll.current?.scrollIntoView(false);
+      scrollRef.current?.scrollIntoView(true);
     };
 
     TextAreaRef.current?.addEventListener('keyup', handleKeyUp);

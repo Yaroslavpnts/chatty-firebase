@@ -85,6 +85,10 @@ export const TextareaMessageStyled = styled('textarea')`
     border: 1px solid black;
   }
 
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   /* &::-webkit-scrollbar {
     width: 0px;
   } */

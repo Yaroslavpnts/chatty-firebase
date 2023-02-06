@@ -25,8 +25,6 @@ const Search = () => {
 
   const { currentUser } = useAuth();
 
-  // const { dispatch } = useContext(ChatContext) as ChatContextType;
-
   const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return;
@@ -86,7 +84,6 @@ const Search = () => {
           },
           [`${combinedId}.date`]: serverTimestamp(),
         });
-
       } else {
         // doc.data() will be undefined in this case
         console.log('document has already exists!');
