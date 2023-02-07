@@ -12,7 +12,7 @@ import { useChatContext } from '../../../hooks/useChat';
 
 dayjs.extend(dayOfYear);
 
-const Messages = () => {
+const Messages: React.FC = () => {
   const [messages, setMessages] = useState<DBMessageModel[]>([]);
   const [img, setImg] = useState('');
   const scrollRef = useRef<HTMLSpanElement>(null);

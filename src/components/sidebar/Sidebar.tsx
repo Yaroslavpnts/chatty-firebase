@@ -10,6 +10,7 @@ const Sidebar: React.FC = () => {
 
   return (
     <SidebarSectionStyled isShowChat={!!state.chatId}>
+      {/* // <SidebarSectionStyled isShowChat={true}> */}
       <Navbar />
       <UserChatBlock>
         <Search />

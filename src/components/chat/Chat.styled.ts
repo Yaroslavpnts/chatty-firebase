@@ -9,7 +9,7 @@ export const MessagesContainer = styled(Box)<SidebarSectionProps>`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  width: 65%;
+  width: 62%;
   background: rgba(60, 36, 20, 0.38);
   background-image: url(${(props) => props.bgimage});
   background-position: 50% 50%;

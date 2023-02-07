@@ -35,9 +35,9 @@ export interface DBUserChatsModel {
 }
 
 export interface DBMessageModel {
-  id: string;
-  text: string;
-  senderId: string;
   date: Timestamp;
+  id: string;
   image?: string;
+  senderId: string;
+  text: string;
 }
