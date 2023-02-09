@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { User } from 'firebase/auth';
 import { arrayUnion, doc, serverTimestamp, Timestamp, updateDoc } from 'firebase/firestore';
 import { useFormik } from 'formik';
 import { useAuth } from '../../../../hooks/useAuth';
@@ -119,6 +118,7 @@ const SendMessage: React.FC<SendMessageProps> = ({ scrollRef }) => {
         });
       } catch (error) {
         const { message } = error as { message: string };
+        console.error(message);
       }
 
       resetForm();
@@ -135,6 +135,8 @@ const SendMessage: React.FC<SendMessageProps> = ({ scrollRef }) => {
     formik.setFieldValue('message', '');
     formik.setFieldValue('file', '');
 
+    const ref = TextAreaRef.current;
+
     const handleKeyUp = (e: KeyboardEvent) => {
       const target = e?.target as HTMLTextAreaElement;
       const minHeight = 50;
@@ -145,15 +147,15 @@ const SendMessage: React.FC<SendMessageProps> = ({ scrollRef }) => {
         target.style.height = `${scHeight}px`;
       }
 
-      scrollRef.current?.scrollIntoView(true);
+      ref?.scrollIntoView(true);
     };
 
-    TextAreaRef.current?.addEventListener('keyup', handleKeyUp);
+    ref?.addEventListener('keyup', handleKeyUp);
 
     return () => {
-      TextAreaRef.current?.removeEventListener('keyup', handleKeyUp);
+      ref?.removeEventListener('keyup', handleKeyUp);
     };
-  }, [state.chatId]);
+  }, [state.chatId, formik]);
 
   return (
     <ChatFormContainerStyled>

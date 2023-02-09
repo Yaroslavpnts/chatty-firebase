@@ -57,7 +57,7 @@ const Message: React.FC<MessageProps> = ({ message, scrollRef, handleClick, newD
   useEffect(() => {
     // scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
     scrollRef.current?.scrollIntoView(false);
-  }, [message]);
+  }, [message, scrollRef]);
 
   return (
     <>

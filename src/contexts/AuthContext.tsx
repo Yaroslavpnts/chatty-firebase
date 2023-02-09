@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { auth } from '../utils/init-firebase';
 import {
   createUserWithEmailAndPassword,
@@ -12,7 +12,6 @@ import {
   confirmPasswordReset,
   setPersistence,
   browserLocalPersistence,
-  browserSessionPersistence,
 } from 'firebase/auth';
 
 const register = (email: string, password: string) => {
@@ -60,7 +59,7 @@ const AuthContextProvider: React.FC<AuthContextProps> = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      await setPersistence(auth, browserSessionPersistence);
+      await setPersistence(auth, browserLocalPersistence);
 
       setCurrentUser(user);
     });

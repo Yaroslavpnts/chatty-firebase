@@ -33,7 +33,7 @@ const Chats = () => {
     if (currentUser?.uid) {
       return getChats();
     }
-  }, [currentUser!.uid]);
+  }, [currentUser]);
 
   // console.log(chats);
   // console.log(Object.entries(chats));

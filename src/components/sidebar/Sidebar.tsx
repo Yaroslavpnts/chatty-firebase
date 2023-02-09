@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Chats from './userChats/userChats';
 import Navbar from './navbar/Navbar';
 import Search from './search/Search';

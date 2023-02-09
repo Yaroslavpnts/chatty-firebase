@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Wrapper } from '../../components/formWrapper/FormWrapper';
 import { useFormik } from 'formik';
 import { Alert, Snackbar, Stack } from '@mui/material';
-import { LoadingButton } from '@mui/lab';
 import { useAuth } from '../../hooks/useAuth';
 import { FormStyled, HeadingPageStyled, RowStyled } from '../../styles/globalStyles';
 import { PageWrapper } from '../../components/pageWrapper/PageWrapper';
