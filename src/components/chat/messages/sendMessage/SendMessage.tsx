@@ -155,7 +155,8 @@ const SendMessage: React.FC<SendMessageProps> = ({ scrollRef }) => {
     return () => {
       ref?.removeEventListener('keyup', handleKeyUp);
     };
-  }, [state.chatId, formik]);
+    //eslint-disable-next-line
+  }, [state.chatId]);
 
   return (
     <ChatFormContainerStyled>
