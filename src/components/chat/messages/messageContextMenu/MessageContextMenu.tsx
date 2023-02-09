@@ -82,13 +82,16 @@ export const MessageContextMenu: React.FC<MessageContextMenuProps> = ({
   };
 
   useEffect(() => {
+    const ref = contextRef.current;
+
     const handler = (e: MouseEvent) => {
       setShowContextMenu(false);
     };
 
-    contextRef.current?.addEventListener('mouseleave', handler);
+    ref?.addEventListener('mouseleave', handler);
 
-    return () => contextRef.current?.removeEventListener('mouseleave', handler);
+    return () => ref?.removeEventListener('mouseleave', handler);
+    // eslint-disable-next-line
   }, []);
 
   return (
